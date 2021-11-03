@@ -7,16 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Star Admin Premium Bootstrap Admin Dashboard Template</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="public/Assets/Admin/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="public/Assets/Admin/vendors/iconfonts/ionicons/dist/css/ionicons.css">
-    <link rel="stylesheet" href="public/Assets/Admin/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css">
-    <link rel="stylesheet" href="public/Assets/Admin/vendors/css/vendor.bundle.base.css">
-    <link rel="stylesheet" href="public/Assets/Admin/vendors/css/vendor.bundle.addons.css">
+    <link rel="stylesheet"
+        href="<?php echo _WEB_ROOT; ?>/public/Assets/Admin/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet"
+        href="<?php echo _WEB_ROOT; ?>/public/Assets/Admin/vendors/iconfonts/ionicons/dist/css/ionicons.css">
+    <link rel="stylesheet"
+        href="<?php echo _WEB_ROOT; ?>/public/Assets/Admin/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="<?php echo _WEB_ROOT; ?>/public/Assets/Admin/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="<?php echo _WEB_ROOT; ?>/public/Assets/Admin/vendors/css/vendor.bundle.addons.css">
     <!-- endinject -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="public/Assets/Admin/css/shared/style.css">
+    <link rel="stylesheet" href="<?php echo _WEB_ROOT; ?>/public/Assets/Admin/css/shared/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="public/Assets/Admin/images/favicon.ico" />
+    <link rel="shortcut icon" href="<?php echo _WEB_ROOT; ?>/public/Assets/Admin/images/favicon.ico" />
 </head>
 
 <body>
@@ -36,12 +39,12 @@
                         </div>
                         <div class="row mt-5">
                             <div class="col-12 text-center mt-xl-2">
-                                <a class="text-white font-weight-medium" href="../index.html">Back to home</a>
+                                <a class="text-white font-weight-medium" href="javascript:history.back()">Turn Back</a>
                             </div>
                         </div>
                         <div class="row mt-5">
                             <div class="col-12 mt-xl-2">
-                                <p class="text-white font-weight-medium text-center">Copyright &copy; 2020 All rights
+                                <p class="text-white font-weight-medium text-center">Copyright &copy; 2021 All rights
                                     reserved.</p>
 
                             </div>
