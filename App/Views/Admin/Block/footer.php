@@ -19,15 +19,52 @@
   </div>
   <!-- container-scroller -->
   <!-- plugins:js -->
-  <script src="public/Assets/Admin/vendors/js/vendor.bundle.base.js"></script>
-  <script src="public/Assets/Admin/vendors/js/vendor.bundle.addons.js"></script>
+  <script src="<?php echo _WEB_ROOT; ?>/public/Assets/Admin/vendors/js/vendor.bundle.base.js"></script>
+  <script src="<?php echo _WEB_ROOT; ?>/public/Assets/Admin/vendors/js/vendor.bundle.addons.js"></script>
   <!-- endinject -->
   <!-- Plugin js for this page-->
   <!-- End plugin js for this page-->
   <!-- inject:js -->
-  <script src="public/Assets/Admin/js/shared/off-canvas.js"></script>
-  <script src="public/Assets/Admin/js/shared/misc.js"></script>
+  <script src="<?php echo _WEB_ROOT; ?>/public/Assets/Admin/js/shared/off-canvas.js"></script>
+  <script src="<?php echo _WEB_ROOT; ?>/public/Assets/Admin/js/shared/misc.js"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
-  <script src="public/Assets/Admin/js/shared/jquery.cookie.js" type="text/javascript"></script>
+  <script src="<?php echo _WEB_ROOT; ?>/public/Assets/Admin/js/shared/jquery.cookie.js" type="text/javascript"></script>
+  <script type="text/javascript">
+function readURL(input) {
+    if (input.files && input.files[0]) {
+
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            $('.image-upload-wrap').hide();
+
+            $('.file-upload-image').attr('src', e.target.result);
+            $('.file-upload-content').show();
+
+            $('.image-title').html(input.files[0].name);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+
+    } else {
+        removeUpload();
+    }
+}
+
+function removeUpload() {
+    $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+    $('.file-upload-content').hide();
+    $('.image-upload-wrap').show();
+}
+$('.image-upload-wrap').bind('dragover', function() {
+    $('.image-upload-wrap').addClass('image-dropping');
+});
+$('.image-upload-wrap').bind('dragleave', function() {
+    $('.image-upload-wrap').removeClass('image-dropping');
+});
+  </script>
+  <script>
+CKEDITOR.replace('editor1');
+  </script>
   <!-- End custom js for this page-->
