@@ -7,7 +7,8 @@ class Database {
         global $db_config;
         $this->__conn = Connection::getInstance($db_config);
     }
-    public function insert($table,$data){
+
+    public function insertData($table,$data){
         $columns=implode(",",array_keys($data));
 
         $valuesToString= array_map(function($value){
@@ -24,7 +25,8 @@ class Database {
         }
         return false;
     }
-    public function update($table,$data,$condition=''){
+
+    public function updateData($table,$data,$condition=''){
         $dataSet=[];
 
         foreach($data as $key=>$value){
@@ -34,14 +36,15 @@ class Database {
         $dataSetToString=implode(",",$dataSet);
 
         $sql= "UPDATE ${table} SET $dataSetToString where $condition";
-
+        echo $sql;
         $status=$this->__query($sql);
         if($status){
             return true;
         }
         return false;
     }
-    public function delete($table,$condition=''){
+
+    public function deleteData($table,$condition=''){
         if(!empty($condition)){
             $sql="DELETE FROM ${table} WHERE $condition";
         }else{
@@ -53,6 +56,7 @@ class Database {
         }
         return false;
     }
+
     public function __query($sql){
         try{
             $statement= $this->__conn->prepare($sql);
@@ -64,7 +68,8 @@ class Database {
             die();
         }
     }
-    function lastInsertId(){
+    
+    public function lastInsertId(){
         return $this->__conn->lastInsertId();
     }
 } 

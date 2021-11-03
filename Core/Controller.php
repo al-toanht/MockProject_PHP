@@ -1,5 +1,7 @@
 <?php
 class Controller extends App{
+    public $db;
+    
     public function model($model){
         if(file_exists(_DIR_ROOT.'/App/Models/'.$model.'.php')){
             require_once _DIR_ROOT.'/App/Models/'.$model.'.php';
@@ -10,6 +12,7 @@ class Controller extends App{
         }
         return false;
     }
+
     public function view($view,$data=[]){
         extract($data);
         if(file_exists(_DIR_ROOT.'/App/Views/'.$view.'.php')){
@@ -17,5 +20,7 @@ class Controller extends App{
         }
         return false;
     }
+
+  
 } 
 ?>
