@@ -70,7 +70,7 @@
                 <div class="row">
                     <div class="col-xl-2">
                         <span class="top-nav__logo">
-                            <a>
+                            <a href="<?php echo _WEB_ROOT; ?>/trang-chu">
                                 c<img alt="" class="logo"
                                     src="<?php echo _WEB_ROOT; ?>/public/Assets/User/icon/Forma-1.png">ntient
                             </a>
@@ -78,7 +78,7 @@
                     </div>
                     <div class="col-xl-7">
                         <ul class="top_nav__menu">
-                            <?php foreach ($listcategories as $key => $value){?>
+                            <?php foreach ($listCategoriesParent as $key => $value){?>
                             <li>
                                 <a href=" "><?php echo $value['category_name']; ?></a>
                             </li>
@@ -88,7 +88,7 @@
                     <div class="col-xl-3 ">
                         <div class="top-nav__links ">
                             <a href=" ">EN</a> &emsp;
-                            <a href=" " class="user "><i class="fa fa-user icon "></i>
+                            <a href="<?php echo _WEB_ROOT; ?>/login" class="user "><i class="fa fa-user icon "></i>
                             </a>
                         </div>
                     </div>

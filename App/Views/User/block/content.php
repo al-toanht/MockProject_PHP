@@ -2,93 +2,63 @@
     <div class="news">
         <div class="container">
             <div class="row  no-gutters">
-                <div class="col-xl-6 ">
+                <?php foreach ($newsTopBig as $key => $value){ ?>
+                <div class="col-xl-6 "
+                    style="background: url(<?php echo _WEB_ROOT; ?>/public/Assets/images/<?php echo $value['image']?>);background-repeat: no-repeat;background-size: cover;">
                     <div class="about__bignews">
                         <div class="about__category ">
-                            <span>Ukraine</span>
+                            <span><?php echo $value['category_name'] ?></span>
                         </div>
                         <div class="about__date-time___title ">
                             <img alt="" src="<?php echo _WEB_ROOT; ?>/public/Assets/User/icon/timetable.png "><span
-                                class="about__date-time ">20 minutes
-                                ago</span>
-                            <a href="">
-                                <p class="about__title ">In new york at 5 am sunday,there was no man and machine</p>
+                                class="about__date-time "><?php echo $value['createdate'] ?></span>
+                            <a href="<?php echo _WEB_ROOT ?>/home/details/<?php echo $value['id']?>">
+                                <p class="about__title "><?php echo $value['title'] ?></p>
                             </a>
                         </div>
                     </div>
                 </div>
+                <?php }?>
                 <div class="col-xl-6 ">
                     <div class="row child no-gutters ">
-                        <div class="col-xl-6 col-xl-3 ">
-                            <div class="about__smallnew ">
-                                <div class="about__category ">
-                                    <span> Ukaraine </span>
+                        <?php foreach ($newsTopSmallAbove as $key => $value){ ?>
+                        <div class="col-xl-6 col-xl-3 "
+                            style="background: url(<?php echo _WEB_ROOT; ?>/public/Assets/images/<?php echo $value['image']?>);background-repeat: no-repeat;background-size: cover;">
+                            <div class="about__smallnew">
+                                <div class="about__category">
+                                    <span class="category5"> <?php echo $value['category_name'] ?> </span>
                                 </div>
                                 <div class="about__date-time___title ">
                                     <img alt=""
                                         src="<?php echo _WEB_ROOT; ?>/public/Assets/User/icon/timetable.png "><span
-                                        class="about__date-time ">20 minutes
-                                        ago</span>
-                                    <a href="">
-                                        <p class="about__title ">In new york at 5 am sunday,there was no man and
-                                            machine</p>
+                                        class="about__date-time "><?php echo $value['createdate'] ?></span>
+                                    <a href="<?php echo _WEB_ROOT ?>/home/details/<?php echo $value['id']?>">
+                                        <p class="about__title "><?php echo $value['title'] ?></p>
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-6 col-xl-3 ">
-                            <div class="about__smallnew ">
-                                <div class="about__category ">
-                                    <span> Ukaraine </span>
-                                </div>
-                                <div class="about__date-time___title ">
-                                    <img alt=""
-                                        src="<?php echo _WEB_ROOT; ?>/public/Assets/User/icon/timetable.png "><span
-                                        class="about__date-time ">20 minutes
-                                        ago</span>
-                                    <a href="">
-                                        <p class="about__title ">In new york at 5 am sunday,there was no man and
-                                            machine</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                        <?php }?>
                     </div>
                     <div class="row child no-gutters ">
-                        <div class="col-xl-6 col-xl-3 ">
-                            <div class="about__smallnew ">
-                                <div class="about__category ">
-                                    <span> Ukaraine </span>
+                        <?php foreach ($newsTopSmallBelow as $key => $value){ ?>
+                        <div class="col-xl-6 col-xl-3"
+                            style="background: url(<?php echo _WEB_ROOT; ?>/public/Assets/images/<?php echo $value['image']?>);background-repeat: no-repeat;background-size: cover;">
+                            <div class="about__smallnew">
+                                <div class="about__category">
+                                    <span class="category4"> <?php echo $value['category_name'] ?> </span>
                                 </div>
                                 <div class="about__date-time___title ">
                                     <img alt=""
                                         src="<?php echo _WEB_ROOT; ?>/public/Assets/User/icon/timetable.png "><span
-                                        class="about__date-time ">20 minutes
-                                        ago</span>
-                                    <a href="">
-                                        <p class="about__title ">In new york at 5 am sunday,there was no man and
-                                            machine</p>
+                                        class="about__date-time "><?php echo $value['createdate'] ?></span>
+                                    <a href="<?php echo _WEB_ROOT ?>/home/details/<?php echo $value['id']?>">
+                                        <p class="about__title "><?php echo $value['title'] ?></p>
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-6 col-xl-3 ">
-                            <div class="about__smallnew ">
-                                <div class="about__category ">
-                                    <span> Ukaraine </span>
-                                </div>
-                                <div class="about__date-time___title ">
-                                    <img alt=""
-                                        src="<?php echo _WEB_ROOT; ?>/public/Assets/User/icon/timetable.png "><span
-                                        class="about__date-time ">20 minutes
-                                        ago</span>
-                                    <a href="">
-                                        <p class="about__title ">In new york at 5 am sunday,there was no man and
-                                            machine</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                        <?php }?>
                     </div>
                 </div>
             </div>
@@ -107,57 +77,39 @@
             <div class="row">
                 <div class="col-xl-8">
                     <div class="banner-news normal-banner">
-                        <span>World</span>
+                        <span>Star</span>
                         <div class="nav-slider">
                             <i class="fa fa-angle-left "></i>
                             <i class="fa fa-angle-right"></i>
                         </div>
                     </div>
                     <div class="row">
+                        <?php foreach ($listNewsStar as $key=>$value){
+                           ?>
                         <div class="col-xl-6">
                             <div class="about__news">
                                 <div class="about__category-img">
-                                    <img alt="" src="<?php echo _WEB_ROOT; ?>/public/Assets/User/images/news.jpg">
-                                    <div class="about__category category4">
-                                        <span class="">Syria</span>
-                                    </div>
-                                </div>
-                                <div class="about__description">
-                                    <span class="about__date-time"><i class="far fa-calendar-alt"></i>20 minutes
-                                        ago</span>
-                                    <span class="comment"><i class="far fa-comment-alt"></i>13</span>
-                                    <div class="about__title ">
-                                        <p>We denouce with righteous</p>
-                                    </div>
-                                    <p class="description">In new york at 5 am sunday,there was no man and machine n
-                                        new york at 5 am sunday,there was no man and machinen new york at 5 am
-                                        sunday,there was no man and machine</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-6">
-                            <div class="about__news">
-                                <div class="about__category-img">
-                                    <img alt="" src="images/news.jpg">
+                                    <a href="<?php echo _WEB_ROOT ?>/home/details/<?php echo $value['id']?>">
+                                        <img alt=""
+                                            src="<?php echo _WEB_ROOT ?>/public/Assets/images/<?php echo $value['image']?>">
+                                    </a>
                                     <div class="about__category category2">
-                                        <span> australia</span>
+                                        <span><?php  echo $value['category_name']?></span>
                                     </div>
                                 </div>
                                 <div class="about__description">
-                                    <span class="about__date-time"><i class="far fa-calendar-alt"></i>20 minutes
-                                        ago</span>
+                                    <span class="about__date-time"><i
+                                            class="far fa-calendar-alt"></i><?php  echo $value['createdate']?></span>
                                     <span class="comment"><i class="far fa-comment-alt"></i>13</span>
                                     <div class="about__title">
-                                        <p>We denouce with righteous</p>
+                                        <a
+                                            href="<?php echo _WEB_ROOT ?>/home/details/<?php echo $value['id']?>"><?php  echo $value['title']?></a>
                                     </div>
-                                    <p class="description">In new york at 5 am sunday,there was no man and machine
-                                        In new york at 5 am sunday,there was no man and machineIn new york at 5 am
-                                        sunday,there was no man and machineIn new york at 5 am sunday,there was no
-                                        man and
-                                        machineIn new york at 5 am sunday,there was no man and machine</p>
+                                    <p class="description"><?php  echo $value['content']?></p>
                                 </div>
                             </div>
                         </div>
+                        <?php }?>
                     </div>
                 </div>
                 <div class="col-xl-4">
@@ -170,7 +122,8 @@
                                 <div class="top-left-forecast">
                                     <span class="big-text">Mostly Sunny</span>
                                     <div class="big-img">
-                                        <img alt="" src="images/partly_cloudy.png">
+                                        <img alt=""
+                                            src="<?php echo _WEB_ROOT ?>/public/Assets/images/partly_cloudy.png">
                                         <span class="degree">6</span>
                                         <div class="degree-c-f">
                                             <span class="degree-c">&#8451; /</span>
@@ -185,13 +138,14 @@
                                 </div>
                             </div>
                             <div class="weather-forecast__chart">
-                                <img alt="" src="images/chart.png">
+                                <img alt="" src="<?php echo _WEB_ROOT ?>/public/Assets/images/chart.png">
                             </div>
                             <div class="bottom-forecast">
                                 <div class="weather-forecast__day">
                                     <span class="rank">tue</span>
                                     <div class="weather-forecast__img">
-                                        <img alt="" src="images/rain_s_cloudy.png">
+                                        <img alt=""
+                                            src="<?php echo _WEB_ROOT ?>/public/Assets/images//rain_s_cloudy.png">
                                     </div>
                                     <span class="degree-small_first">6&#176;</span>
                                     <span class="degree-small_second">0&#176;</span>
@@ -199,7 +153,8 @@
                                 <div class="weather-forecast__day">
                                     <span class="rank">wed</span>
                                     <div class="weather-forecast__img">
-                                        <img alt="" src="images/partly_cloudy_small.png">
+                                        <img alt=""
+                                            src="<?php echo _WEB_ROOT ?>/public/Assets/images/partly_cloudy_small.png">
                                     </div>
                                     <span class="degree-small_first">6&#176;</span>
                                     <span class="degree-small_second">0&#176;</span>
@@ -207,7 +162,7 @@
                                 <div class="weather-forecast__day">
                                     <span class="rank">thu</span>
                                     <div class="weather-forecast__img">
-                                        <img alt="" src="images/rain_light.png">
+                                        <img alt="" src="<?php echo _WEB_ROOT ?>/public/Assets/images/rain_light.png">
                                     </div>
                                     <span class="degree-small_first">6&#176;</span>
                                     <span class="degree-small_second">0&#176;</span>
@@ -215,7 +170,8 @@
                                 <div class="weather-forecast__day">
                                     <span class="rank">fri</span>
                                     <div class="weather-forecast__img">
-                                        <img alt="" src="images/partly_cloudy_small.png">
+                                        <img alt=""
+                                            src="<?php echo _WEB_ROOT ?>/public/Assets/images/partly_cloudy_small.png">
                                     </div>
                                     <span class="degree-small_first">6&#176;</span>
                                     <span class="degree-small_second">0&#176;</span>
@@ -223,7 +179,8 @@
                                 <div class="weather-forecast__day">
                                     <span class="rank">sat</span>
                                     <div class="weather-forecast__img">
-                                        <img alt="" src="images/rain_s_cloudy.png">
+                                        <img alt=""
+                                            src="<?php echo _WEB_ROOT ?>/public/Assets/images/rain_s_cloudy.png">
                                     </div>
                                     <span class="degree-small_first">6&#176;</span>
                                     <span class="degree-small_second">0&#176;</span>
@@ -243,7 +200,7 @@
                             <div class="volume">
                                 <div class="volume-text">Volume</div>
                                 <div class="img-volume">
-                                    <img alt="" src="images/volume.png">
+                                    <img alt="" src="<?php echo _WEB_ROOT ?>/public/Assets/images/volume.png">
                                 </div>
                             </div>
                         </div>
@@ -275,46 +232,20 @@
                 <div class="row">
                     <div class="col-xl-4">
                         <div class="banner-news smallbanner">
-                            <span>travel</span>
+                            <span>cine</span>
                         </div>
+                        <?php foreach ($listNewsCine as $key =>$value){
+                        ?>
                         <div class="about__description">
-                            <span class="about__date-time"><i class="far fa-calendar-alt"></i>20 minutes ago</span>
+                            <span class="about__date-time"><i
+                                    class="far fa-calendar-alt"></i><?php echo $value['createdate'] ?></span>
                             <span class="comment"><i class="far fa-comment-alt"></i>13</span>
                             <div class="about__title">
-                                <p>We denouce with righteous</p>
+                                <a
+                                    href="<?php echo _WEB_ROOT?>/home/details/<?php echo $value['id']?>"><?php echo $value['title'] ?></a>
                             </div>
                         </div>
-                        <div class="about__description">
-                            <span class="about__date-time"><i class="far fa-calendar-alt"></i>20 minutes ago</span>
-                            <span class="comment"><i class="far fa-comment-alt"></i>13</span>
-                            <div class="about__title">
-                                <p>We denouce with righteous</p>
-                            </div>
-
-                        </div>
-                        <div class="about__description">
-                            <span class="about__date-time"><i class="far fa-calendar-alt"></i>20 minutes ago</span>
-                            <span class="comment"><i class="far fa-comment-alt"></i>13</span>
-                            <div class="about__title">
-                                <p>We denouce with righteous</p>
-                            </div>
-
-                        </div>
-                        <div class="about__description">
-                            <span class="about__date-time"><i class="far fa-calendar-alt"></i>20 minutes ago</span>
-                            <span class="comment"><i class="far fa-comment-alt"></i>13</span>
-                            <div class="about__title">
-                                <p>We denouce with righteouas</p>
-                            </div>
-
-                        </div>
-                        <div class="about__description">
-                            <span class="about__date-time"><i class="far fa-calendar-alt"></i>20 minutes ago</span>
-                            <span class="comment"><i class="far fa-comment-alt"></i>13</span>
-                            <div class="about__title">
-                                <p>We denouce with righteous</p>
-                            </div>
-                        </div>
+                        <?php }?>
                     </div>
                     <div class="col-xl-8">
                         <div class="banner-news normal-banner">

@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="<?php echo _WEB_ROOT; ?>/public/Assets/User/styles/header.css">
     <link rel="stylesheet" href="<?php echo _WEB_ROOT; ?>/public/Assets/User/styles/main.css">
     <link rel="stylesheet" href="<?php echo _WEB_ROOT; ?>/public/Assets/User/styles/footer.css">
+    <link rel="stylesheet" href="<?php echo _WEB_ROOT; ?>/public/Assets/User/styles/maindetail.css">
     <title>Home</title>
 </head>
 
@@ -23,7 +24,7 @@
     $this->view('User/block/header',$sub_content) 
     ?>
     <?php
-    $this->view('User/block/content') 
+    $this->view($content,$sub_content) 
     ?>
     <?php
     $this->view('User/block/footer') 

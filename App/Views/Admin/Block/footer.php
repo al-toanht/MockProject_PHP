@@ -11,13 +11,6 @@
                   templates</a> from Bootstrapdash.com</span>
       </div>
   </footer>
-  <!-- partial -->
-  </div>
-  <!-- main-panel ends -->
-  </div>
-  <!-- page-body-wrapper ends -->
-  </div>
-  <!-- container-scroller -->
   <!-- plugins:js -->
   <script src="<?php echo _WEB_ROOT; ?>/public/Assets/Admin/vendors/js/vendor.bundle.base.js"></script>
   <script src="<?php echo _WEB_ROOT; ?>/public/Assets/Admin/vendors/js/vendor.bundle.addons.js"></script>

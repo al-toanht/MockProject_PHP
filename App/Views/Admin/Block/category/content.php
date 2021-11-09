@@ -1,5 +1,3 @@
-<!-- partial -->
-<div class="main-panel">
     <div class="content-wrapper">
         <div class="row">
             <div class="col-lg-12 grid-margin stretch-card">
@@ -16,7 +14,7 @@
                                     <th>ID</th>
                                     <th>Category_Name</th>
                                     <th>Parent Id</th>
-                                    <th>Created</th>
+                                    <th>Created Date</th>
                                     <th colspan="2">Action</th>
                                 </tr>
                             </thead>

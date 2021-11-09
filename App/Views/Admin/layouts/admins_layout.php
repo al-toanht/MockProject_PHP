@@ -36,18 +36,24 @@
 </head>
 
 <body>
-    <?php 
-    $this->view('Admin/Block/header');
-    ?>
-    <?php
-    $this->view('Admin/Block/navmenu') ;
-    ?>
-    <?php
-    $this->view($content,$sub_content); 
-    ?>
-    <?php
-    $this->view('Admin/Block/footer'); 
-    ?>
+    <div class="container-scroller">
+        <?php 
+            $this->view('Admin/Block/header');
+        ?>
+        <div class="container-fluid page-body-wrapper">
+            <?php
+                $this->view('Admin/Block/navmenu') ;
+            ?>
+            <div class="main-panel">
+                <?php
+                    $this->view($content,$sub_content); 
+                ?>
+                <?php
+                    $this->view('Admin/Block/footer'); 
+                ?>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

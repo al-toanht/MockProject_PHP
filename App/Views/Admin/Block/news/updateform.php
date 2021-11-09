@@ -1,4 +1,3 @@
-<div class="main-panel">
     <div class="content-wrapper">
         <div class="row">
             <div class="col-md-12 grid-margin stretch-card">
@@ -12,7 +11,8 @@
                                 <label for="inputTitle">Category Post</label>
                                 <select class="form-control form-control-lg" id='cate_id' name='cate_id'>
                                     <?php foreach ($listcategories as $key => $value1){?>
-                                    <option value='<?php echo $value1['id'] ?>'>
+                                    <option value='<?php echo $value1['id'] ?>'
+                                        <?php if($value1['id']==$value['cate_id']) echo "selected" ?>>
                                         <?php echo $value1['category_name'] ?></option>
                                     <?php }?>
                                 </select>
@@ -20,12 +20,12 @@
                             <div class="form-group">
                                 <label for="inputTitle">Title</label>
                                 <input type="text" class="form-control" name="title" id="title" placeholder="Title"
-                                    value="<?php echo $value['title'] ?>" required>
+                                    value='<?php echo $value['title']; ?>' required>
                             </div>
-                            <div class="form-group">
+                            <div class=" form-group">
                                 <label for="textContent">Content</label>
                                 <textarea class="form-control" id="content" name="content" rows="2"
-                                    vrequired><?php echo $value['content'] ?></textarea>
+                                    required><?php echo $value['content'] ?></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="inputDescription">Description</label>
@@ -45,7 +45,7 @@
                                     </div>
                                     <div class="file-upload-content" style="display:block">
                                         <img class="file-upload-image"
-                                            src="<?php echo _WEB_ROOT; ?>/public/Assets/Admin/images/<?php echo $value['image'];?>"
+                                            src="<?php echo _WEB_ROOT; ?>/public/Assets/images/<?php echo $value['image'];?>"
                                             alt="your image" />
                                         <div class="image-title-wrap">
                                             <button type="button" onclick="removeUpload()" class="remove-image">Remove
@@ -54,10 +54,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-success mr-2 " name="submit">Add</button>
+                            <button type="submit" class="btn btn-success mr-2 " name="submit">Update</button>
                         </form>
                         <?php }?>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
