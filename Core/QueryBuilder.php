@@ -13,19 +13,36 @@ trait QueryBuilder{
     }
 
     public function where($field, $compare, $value){
-        if(empty($this->where)){
+        if(empty($this->where)) {
             $this->operator=" WHERE ";
-        }else{
+        }else {
             $this->operator=" AND ";
         }
         $this->where.="$this->operator $field $compare '$value' ";
         return $this;
     } 
-
-    public function orWhere($field, $compare, $value){
-        if(empty($this->where)){
+    public function whereIn($field, $compare, $value){
+        if(empty($this->where)) {
             $this->operator=" WHERE ";
-        }else{
+        }else {
+            $this->operator=" AND ";
+        }
+        $this->where.="$this->operator $field $compare ($value) ";
+        return $this;
+    } 
+    public function whereJoin($field, $compare, $value){
+        if(empty($this->where)) {
+            $this->operator=" WHERE ";
+        }else {
+            $this->operator=" AND ";
+        }
+        $this->where.="$this->operator $field $compare $value ";
+        return $this;
+    } 
+    public function orWhere($field, $compare, $value){
+        if(empty($this->where)) {
+            $this->operator=" WHERE ";
+        }else {
             $this->operator=" OR ";
         }
         $this->where.="$this->operator $field $compare '$value' ";
@@ -34,9 +51,9 @@ trait QueryBuilder{
 
     public function orderBy($field, $type="ASC"){
         $fieldArr= array_filter(explode(',',$field));
-        if(!empty($fieldArr)&& count($fieldArr)>=2){
+        if(!empty($fieldArr)&& count($fieldArr)>=2) {
             $this->orderBy= " ORDER BY " .implode(', ',$fieldArr);
-        }else{
+        }else {
             $this->orderBy =" ORDER BY " .$field." ".$type;
         }
         return $this;
@@ -48,9 +65,9 @@ trait QueryBuilder{
     }
     
     public function WhereLike($field, $value){
-        if(empty($this->where)){
+        if(empty($this->where)) {
             $this->operator=" WHERE ";
-        }else{
+        }else {
             $this->operator=" AND ";
         }
         $this->where.="$this->operator $field LIKE '$value' ";
@@ -65,11 +82,24 @@ trait QueryBuilder{
     public function get(){
         $sqlQuery= "SELECT $this->selectField FROM $this->tableName $this->innerJoin $this->where $this->orderBy $this->limit ";
         $sqlQuery = trim($sqlQuery);
+        
         $query=$this->__query($sqlQuery);
         //Reset 
         $this->resetQuery();
-        if(!empty($query)){
+        if(!empty($query)) {
             return $query->fetchAll(PDO::FETCH_ASSOC);
+        }
+        return false;
+    }
+    public function getObject(){
+        $sqlQuery= "SELECT $this->selectField FROM $this->tableName $this->innerJoin $this->where $this->orderBy $this->limit ";
+        $sqlQuery = trim($sqlQuery);
+        
+        $query=$this->__query($sqlQuery);
+        //Reset 
+        $this->resetQuery();
+        if(!empty($query)) {
+            return $query->fetch(PDO::FETCH_OBJ);
         }
         return false;
     }
@@ -82,22 +112,27 @@ trait QueryBuilder{
     public function insert($data){
         $tableName= $this->tableName;
         $insertStatus = $this->insertData($tableName,$data);
+
         return $insertStatus;
     }
 
     public function update($data){
         $whereUpdate = str_replace('WHERE','',$this->where);
         $whereUpdate = trim($whereUpdate);
+        
         $tableName = $this->tableName;
         $statusUpdate= $this->updateData($tableName,$data,$whereUpdate);
+
         return $statusUpdate;
     }
     
     public function delete(){
         $whereDelete = str_replace('WHERE','',$this->where);
         $whereDelete = trim($whereDelete);
+
         $tableName = $this->tableName;
         $statusUpdate= $this->deleteData($tableName,$whereDelete);
+        
         return $statusUpdate;
     }
 
@@ -106,9 +141,10 @@ trait QueryBuilder{
         $query=$this->__query($sqlQuery);
         //Reset 
         $this->resetQuery();
-        if(!empty($query)){
+        if(!empty($query)) {
             return $query->fetch(PDO::FETCH_ASSOC);
         }
+        
         return false;
     }
 

@@ -19,7 +19,7 @@ class Connection{
     }
     
     public static function getInstance($config){
-        if(self::$instance==null){
+        if(self::$instance==null) {
             $connection =new Connection($config);
             self::$instance = self::$conn;
         }

@@ -18,40 +18,37 @@ class Database {
         $newValues= implode(",",$valuesToString);
 
         $sql= "INSERT INTO ${table}(${columns}) values(${newValues})";
-        
         $status = $this->__query($sql);
-        if($status){
+        if($status) {
             return true;
         }
         return false;
     }
 
     public function updateData($table,$data,$condition=''){
-        $dataSet=[];
+        $dataSet = [];
 
         foreach($data as $key=>$value){
             array_push($dataSet,"${key}='".$value."'");
         }
 
         $dataSetToString=implode(",",$dataSet);
-
         $sql= "UPDATE ${table} SET $dataSetToString where $condition";
-        echo $sql;
         $status=$this->__query($sql);
-        if($status){
+        if($status) {
             return true;
         }
         return false;
     }
 
     public function deleteData($table,$condition=''){
-        if(!empty($condition)){
+        if(!empty($condition)) {
             $sql="DELETE FROM ${table} WHERE $condition";
-        }else{
+        }else {
             $sql= "DELETE FROM ${table}";
         }
         $status=$this->__query($sql);
-        if($status){
+        if($status) {
             return true;
         }
         return false;
