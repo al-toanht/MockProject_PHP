@@ -82,8 +82,14 @@
     text-decoration: none;
     padding: 20% 20% 89% 20%;
 }
+
 .top_nav_menu_logo {
     padding: 2.2% 0;
+}
+
+.top-nav__logo>a {
+    color: #636363;
+    text-decoration: none;
 }
 
 .top-nav__links {
