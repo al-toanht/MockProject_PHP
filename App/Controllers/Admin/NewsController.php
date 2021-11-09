@@ -1,9 +1,8 @@
 <?php
-class News extends Controller {
+class NewsController extends Controller {
     private $news;
     private $categories;
     private $data=[];
-    private $_WEB_ROOT=_WEB_ROOT;
     public function __construct(){
         $this->news=$this->model('NewsModel');
         $this->categories=$this->model('CategoryModel');
@@ -24,28 +23,40 @@ class News extends Controller {
         $this->data['content']= 'admin/block/news/addform';
         $this->view('admin/layouts/admins_layout',$this->data);
     }
+
+    public function details($id){
+        $detailNews= $this->news->getDetailNews($id);
+        $this->data['sub_content']['detailNews']=$detailNews;
+        
+        $this->data['content']= 'admin/block/news/detailform';
+        $this->view('admin/layouts/admins_layout',$this->data);
+    }
     
     public function addNews(){
         if(isset($_POST['submit'])){
-            $msg='';
 	        $image = $_FILES["HinhAnh"]["name"];
-	        $target = "public/Assets/Admin/images/".basename($image);
-	        if (move_uploaded_file($_FILES['HinhAnh']['tmp_name'], $target) && file_exists($target)) {
-                $dataInsert=[
-                    'title' =>$_POST['title'],
-                    'content' => $_POST['content'],
-                    'cate_id' => $_POST['cate_id'],
-                    'description' => $_POST['description'],
-                    'image' => basename($image)
-                ];
-                $this->news->createNews($dataInsert);
+            $filename='';
+            $msg='';
+            if(!empty($image)){
+                $target = "public/Assets/images/".basename($image);
+                if(move_uploaded_file($_FILES['HinhAnh']['tmp_name'], $target)){
+                    $filename=basename($image);
+                }else {
+                    $msg= "Upload file khong thanh cong";
+                    App::$app->loadError('uploadfile',['message'=>$msg]);
+  	            }
+            }
+            $dataInsert=[
+                'title' =>$_POST['title'],
+                'content' => $_POST['content'],
+                'cate_id' => $_POST['cate_id'],
+                'description' => $_POST['description'],
+                'image' => $filename,
+            ];
+            $this->news->createNews($dataInsert);
 
-                header("location: $this->_WEB_ROOT/admin-news");  
-  	        }else{
-                $msg= "Upload file khong thanh cong";
-                App::$app->loadError('uploadfile',['message'=>$msg]);
-  	        }
-        }
+            header("location: $this->_WEB_ROOT/admin-news");  
+  	    }
     }
     
     public function storeUpdate($id){
@@ -78,7 +89,7 @@ class News extends Controller {
                 header("location: $this->_WEB_ROOT/admin-news");  
             }else{
                 $msg='';
-                $target = "public/Assets/Admin/images/".basename($image);
+                $target = "public/Assets/images/".basename($image);
                 if (move_uploaded_file($_FILES['HinhAnh']['tmp_name'], $target) && file_exists($target)) {
                     $dataUpdate=[
                         'title' =>$_POST['title'],
@@ -95,8 +106,6 @@ class News extends Controller {
                     App::$app->loadError('uploadfile',['message'=>$msg]);
                 }
             }
-            
-
         }
     }
     public function deleteDataNews($id){

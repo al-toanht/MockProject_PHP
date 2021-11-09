@@ -1,14 +1,15 @@
 <?php
-class Category extends Controller {
+class CategoryController extends Controller {
     private $categories;
+    private $news;
     private $data=[];
-    private $_WEB_ROOT=_WEB_ROOT;
     public function __construct(){
         $this->categories=$this->model('CategoryModel');
+        $this->news=$this->model('NewsModel');
     }
 
     public function index(){
-        $listcategories= $this->categories->getListCategory();
+        $listcategories= $this->categories->getListCategoryASC();
         $this->data['sub_content']['listcategories']= $listcategories;
 
         $this->data['content']= 'admin/block/category/content';
@@ -63,7 +64,7 @@ class Category extends Controller {
     
     public function deleteCate($id){
         $this->categories->deleteCategory($id);
-        
+        $this->news->deleteNewsByCategory($id);
         header("location: $this->_WEB_ROOT/admin-category");
     }
 
