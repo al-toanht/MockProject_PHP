@@ -1,8 +1,11 @@
 <?php
-$routes['default_controller']='home';
-$routes['admin']='admin/category';
-$routes['admin-category']='admin/category';
-$routes['admin-news']='admin/news';
-$routes['trang-chu']='home';
-$routes['tin-tuc/.+-(\d+)']= 'admin/category/show/$1';
+$routes= array(
+    'default_controller' => 'home',
+    'login' => 'Admin/AdminController/login',
+    'admin-changepassword' => 'Admin/AdminController/changePassword',
+    'admin-category' => 'Admin/CategoryController',
+    'admin-news' => 'Admin/NewsController',
+    'logout' => 'Admin/AdminController/logout',
+    'trang-chu' => 'home',
+);
 ?>

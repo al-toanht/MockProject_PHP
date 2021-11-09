@@ -1,5 +1,5 @@
 <?php
-$config['database']=[
+$config['database'] = [
     'host' => 'localhost:3306',
     'user' => 'root',
     'db'=> 'blog'
