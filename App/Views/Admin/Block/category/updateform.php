@@ -22,7 +22,9 @@
                                                 name='parent_category'>
                                                 <option value='0'>default</option>
                                                 <?php foreach ($listcategories as $key => $value1){?>
-                                                <option value='<?php echo $value1['id'] ?>'>
+                                                <option value='<?php echo $value1['id']  ?>' <?php  if($value1['id']==$value['parent_id'])
+                                                    echo "selected";
+                                                    ?>>
                                                     <?php echo $value1['category_name'] ;?></option>
                                                 <?php }?>
                                             </select>

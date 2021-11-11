@@ -10,12 +10,10 @@
                         <table class="table" style="table-layout:fixed">
                             <thead>
                                 <tr>
-                                    <th style="width:30px;">No</th>
-                                    <th style="width:110px;">Category</th>
-                                    <th style="width:200px;">Title</th>
-                                    <th style="width:80px;">Image</th>
-                                    <th style="width:100px;">Created Date</th>
-                                    <th style="width:100px;" colspan="3">Action</th>
+                                    <th style="width:20px;">No</th>
+                                    <th style="width:80px;">Category</th>
+                                    <th style="width:200px; ">Title</th>
+                                    <th style="width:50px;" colspan="3">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -24,30 +22,52 @@
                                 <tr>
                                     <td><?php echo $num++ ?></td>
                                     <td style="overflow: auto;"><?php echo $value['category_name'] ?></td>
-                                    <td style="overflow: auto;"><?php echo $value['title'];?></td>
+                                    <td style="overflow: auto;padding-left: 20px;">
+                                        <?php echo $value['title'];?></td>
                                     <td>
-                                        <?php if(!empty($value['image'])){ ?><img style=" width: 90px"
-                                            src="<?php echo _WEB_ROOT; ?>/public/Assets/images/<?php echo $value['image'];?>"
-                                            alt="image">
-                                        <?php }else {
-                                            echo "No Image";
-                                        }?>
-                                    </td>
-                                    <td><?php echo $value['createdate'];?></td>
-                                    <td>
-                                        <a href="<?php echo _WEB_ROOT ?>/admin-news/details/<?php echo $value['id']?>"><i
+                                        <a href="
+                                        <?php echo _WEB_ROOT ?>/admin-news/details/<?php echo $value['id']?>"><i
                                                 class="fa fa-info-circle"></i></a>
                                     </td>
                                     <td>
                                         <a
-                                            href="<?php echo _WEB_ROOT ?>/admin-news/storeUpdate/<?php echo $value['id']?>"><i
-                                                class="fa fa-edit"></i></a>
+                                            href="<?php echo _WEB_ROOT ?>/admin-news/storeUpdate/<?php echo $value['id']?>">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
                                     </td>
                                     <td>
-                                        <a
-                                            href="<?php echo _WEB_ROOT ?>/admin-news/deleteDataNews/<?php echo $value['id']?>">
-                                            <i class="fa fa-trash-o"></i>
-                                        </a>
+                                        <p class='card-table-link'
+                                            style='margin-bottom:0;cursor:pointer;color: #007bff;' title='Update Record'
+                                            data-target='#exampleModalLong<?php echo $value['id']; ?>'
+                                            data-toggle='modal'>
+                                            </a> <i class="fa fa-trash-o"></i>
+                                        <form
+                                            action="<?php echo _WEB_ROOT ?>/admin-news/deleteDataNews/<?php echo $value['id']?>"
+                                            method='POST' enctype='multipart/form-data' class='modal fade'
+                                            id='exampleModalLong<?php echo $value['id']?>' tabindex='-1' role='dialog'
+                                            aria-labelledby='exampleModalLongTitle<?php echo $value['id']?>'
+                                            aria-hidden='true'>
+                                            <div class='modal-dialog' role='document'>
+                                                <div class='modal-content'>
+                                                    <div class='modal-header'>
+                                                        <h4 style="color: red;" class='modal-title'
+                                                            style="text-transform: uppercase;"
+                                                            id='exampleModalLongTitle<?php echo $value['id']?>'>
+                                                            Bạn Có Chắc Chắn Muốn Xoá Bài Viết Này</h5>
+                                                            <button type='button' class='close' data-dismiss='modal'
+                                                                aria-label='Close'>
+                                                                <span aria-hidden='true'>&times;</span>
+                                                            </button>
+                                                    </div>
+                                                    <div class='modal-footer'>
+                                                        <button type='button' class='btn btn-secondary'
+                                                            data-dismiss='modal'>Đóng</button>
+                                                        <input type='submit' name='submit' class="btn btn-danger"
+                                                            value='Xoá'>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </td>
                                 </tr>
                                 <?php }?>

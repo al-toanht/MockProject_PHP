@@ -14,20 +14,21 @@
     <link rel="stylesheet" href="<?php echo _WEB_ROOT; ?>/public/Assets/User/styles/app.css">
     <link rel="stylesheet" href="<?php echo _WEB_ROOT; ?>/public/Assets/User/styles/header.css">
     <link rel="stylesheet" href="<?php echo _WEB_ROOT; ?>/public/Assets/User/styles/main.css">
-    <link rel="stylesheet" href="<?php echo _WEB_ROOT; ?>/public/Assets/User/styles/footer.css">
     <link rel="stylesheet" href="<?php echo _WEB_ROOT; ?>/public/Assets/User/styles/maindetail.css">
+    <link rel="stylesheet" href="<?php echo _WEB_ROOT; ?>/public/Assets/User/styles/detailcategory.css">
+    <link rel="stylesheet" href="<?php echo _WEB_ROOT; ?>/public/Assets/User/styles/footer.css">
     <title>Home</title>
 </head>
 
 <body>
     <?php
-    $this->view('User/block/header',$sub_content) 
+    $this->view('User/block/header',$content) 
     ?>
     <?php
-    $this->view($content,$sub_content) 
+    $this->view($link,$content) 
     ?>
     <?php
-    $this->view('User/block/footer') 
+    $this->view('User/block/footer',$content) 
     ?>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>

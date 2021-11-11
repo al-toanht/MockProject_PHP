@@ -3,7 +3,7 @@
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h1>Add New Post</h1>
+                        <h1>Update Post</h1>
                         <?php foreach ($detailNews as $key => $value) {?>
                         <form class="forms-sample" method="POST" enctype="multipart/form-data"
                             action="<?php echo _WEB_ROOT?>/admin-news/updateDataNews/<?php echo  $value['id'];?>">
@@ -48,7 +48,8 @@
                                             src="<?php echo _WEB_ROOT; ?>/public/Assets/images/<?php echo $value['image'];?>"
                                             alt="your image" />
                                         <div class="image-title-wrap">
-                                            <button type="button" onclick="removeUpload()" class="remove-image">Remove
+                                            <button type="button" name="remove" onclick="removeUpload()"
+                                                class="remove-image">Remove
                                                 <span class="image-title"><?php echo $value['image'];?></span></button>
                                         </div>
                                     </div>

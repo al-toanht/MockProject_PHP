@@ -58,6 +58,8 @@ $('.image-upload-wrap').bind('dragleave', function() {
 });
   </script>
   <script>
+$('.collapse').collapse()
+
 CKEDITOR.replace('editor1');
   </script>
   <!-- End custom js for this page-->

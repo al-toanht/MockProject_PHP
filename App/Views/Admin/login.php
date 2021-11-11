@@ -37,7 +37,8 @@
                                 <div class="form-group">
                                     <label class="label">Username</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="username" placeholder="Username">
+                                        <input type="text" class="form-control" name="username"
+                                            value="<?php  echo $data['username']; ?>" placeholder="Username">
                                         <div class="input-group-append">
                                             <span class="input-group-text">
                                                 <?php  echo $data['usernameError']; ?>

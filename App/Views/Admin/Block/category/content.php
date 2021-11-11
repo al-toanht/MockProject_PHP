@@ -33,10 +33,39 @@
                                                 class="fa fa-edit"></i></a>
                                     </td>
                                     <td>
-                                        <a
-                                            href="<?php echo _WEB_ROOT ?>/admin-category/deleteCate/<?php echo $value['id']?>">
-                                            <i class="fa fa-trash-o"></i>
-                                        </a>
+                                        <p class='card-table-link'
+                                            style='margin-bottom:0;cursor:pointer;color: #007bff;' title='Update Record'
+                                            data-target='#exampleModalLong<?php echo $value['id']; ?>'
+                                            data-toggle='modal'>
+                                            </a> <i class="fa fa-trash-o"></i>
+                                        <form
+                                            action="<?php echo _WEB_ROOT ?>/admin-category/deleteCate/<?php echo $value['id']?>"
+                                            method='POST' enctype='multipart/form-data' class='modal fade'
+                                            id='exampleModalLong<?php echo $value['id']?>' tabindex='-1' role='dialog'
+                                            aria-labelledby='exampleModalLongTitle<?php echo $value['id']?>'
+                                            aria-hidden='true'>
+                                            <div class='modal-dialog' role='document'>
+                                                <div class='modal-content'>
+                                                    <div class='modal-header'>
+                                                        <h4 style="color: red;" class='modal-title'
+                                                            style="text-transform: uppercase;"
+                                                            id='exampleModalLongTitle<?php echo $value['id']?>'>
+                                                            Bạn Có Chắc Chắn Muốn Xoá Danh Mục Này.
+                                                            <br><br>Sẽ Xoá Tất Cả Bài Post Thuộc Danh Mục Này</h5>
+                                                            <button type='button' class='close' data-dismiss='modal'
+                                                                aria-label='Close'>
+                                                                <span aria-hidden='true'>&times;</span>
+                                                            </button>
+                                                    </div>
+                                                    <div class='modal-footer'>
+                                                        <button type='button' class='btn btn-secondary'
+                                                            data-dismiss='modal'>Đóng</button>
+                                                        <input type='submit' name='submit' class="btn btn-danger"
+                                                            value='Xoá'>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </td>
                                 </tr>
                                 <?php }?>
