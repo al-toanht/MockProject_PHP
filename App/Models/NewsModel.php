@@ -13,12 +13,11 @@ class NewsModel extends Model{
     }
 
     public function getListNews(){
-        $data= $this->db->table('news')->join('categories','news.cate_id=categories.id')->select('news.id,title,content,news.createdate,description,image,categories.category_name')->get();
+        $data= $this->db->table('news')->join('categories','news.cate_id=categories.id')->select('news.id,title,content,news.createdate,description,image,categories.category_name')->orderBy('createdate','DESC')->get();
         return $data;
     }
-    
-    public function getNewsTopBig(){
-        $data= $this->db->table('news')->join('categories','news.cate_id=categories.id')->where('category_name','=',"Hot")->select('news.id,title,content,news.createdate,description,image,categories.category_name')->orderBy('id','DESC')->limit(1)->get();
+    public function getListLastNews($limit){
+        $data= $this->db->table('news')->join('categories','news.cate_id=categories.id')->select('news.id,title,content,news.createdate,description,image,categories.category_name')->limit($limit)->orderBy('createdate','DESC')->get();
         return $data;
     }
 
@@ -31,7 +30,10 @@ class NewsModel extends Model{
         $data= $this->db->table('news')->join('categories','news.cate_id=categories.id')->whereIn('cate_id','IN',$categoryid)->select('news.id,title,content,news.createdate,description,image,categories.category_name')->orderBy('createdate','DESC')->limit($limit)->get();
         return $data; 
     }
-
+    public function getNewsByCategoryID($categoryid,$limit){
+        $data= $this->db->table('news')->join('categories','news.cate_id=categories.id')->where('cate_id','=',$categoryid)->select('news.id,title,content,news.createdate,description,image,categories.category_name')->orderBy('createdate','DESC')->limit($limit)->get();
+        return $data;
+    }
     public function createNews($data){
         $this->db->table('news')->insert($data);
         return $this;

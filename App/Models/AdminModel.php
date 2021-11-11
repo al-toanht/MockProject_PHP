@@ -14,12 +14,14 @@
 
     public function getAdmin($username,$password){
         $data=$this->db->table('admins')->where('username','=',$username)->getObject();
+        if($data){
         $hashedPassword = $data->password;
         if (password_verify($password, $hashedPassword)) {
             return $data;
         } else {
             return false;
         }
+    }
     }
     
     public function updatePassword($data,$id){
