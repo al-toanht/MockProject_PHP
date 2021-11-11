@@ -16,7 +16,6 @@ class AdminController extends Controller {
             ];
             if(empty($data['username'])){
                 $data['usernameError'] = 'Please enter a username.';
-
             }
             if(empty($data['password'])){
                 $data['passwordError'] = 'Please enter a password.';

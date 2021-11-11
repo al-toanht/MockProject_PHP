@@ -63,12 +63,12 @@ class CategoryController extends Controller {
     }
     
     public function deleteCate($id){
-        $this->categories->deleteCategory($id);
-        $this->news->deleteNewsByCategory($id);
-        header("location: $this->_WEB_ROOT/admin-category");
+        if(isset($_POST['submit'])) {
+            $this->categories->deleteCategory($id);
+            $this->news->deleteNewsByCategory($id);
+            
+            header("location: $this->_WEB_ROOT/admin-category");
+        }
     }
-
-   
-   
 } 
 ?>

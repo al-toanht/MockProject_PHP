@@ -70,6 +70,7 @@ class NewsController extends Controller {
 
         $this->view('admin/layouts/admins_layout',$this->data);
     }
+
     public function updateDataNews($id){
         if(isset($_POST['submit'])){
 	        $image = $_FILES["HinhAnh"]["name"];
@@ -87,10 +88,10 @@ class NewsController extends Controller {
                 $this->news->updateNews($dataUpdate,$id);
 
                 header("location: $this->_WEB_ROOT/admin-news");  
-            }else{
+            }else {
                 $msg='';
                 $target = "public/Assets/images/".basename($image);
-                if (move_uploaded_file($_FILES['HinhAnh']['tmp_name'], $target) && file_exists($target)) {
+                if (move_uploaded_file($_FILES['HinhAnh']['tmp_name'], $target)) {
                     $dataUpdate=[
                         'title' =>$_POST['title'],
                         'content' => $_POST['content'],
@@ -108,10 +109,13 @@ class NewsController extends Controller {
             }
         }
     }
+    
     public function deleteDataNews($id){
-        $this->news->deleteNews($id);
-        
-        header("location: $this->_WEB_ROOT/admin-news");  
+        if(isset($_POST['submit'])) {
+            $this->news->deleteNews($id);
+            
+            header("location: $this->_WEB_ROOT/admin-news");  
+        }
     }
 } 
 ?>
