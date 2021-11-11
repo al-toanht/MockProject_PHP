@@ -94,7 +94,6 @@ trait QueryBuilder{
     public function getObject(){
         $sqlQuery= "SELECT $this->selectField FROM $this->tableName $this->innerJoin $this->where $this->orderBy $this->limit ";
         $sqlQuery = trim($sqlQuery);
-        
         $query=$this->__query($sqlQuery);
         //Reset 
         $this->resetQuery();
