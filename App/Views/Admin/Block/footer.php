@@ -59,7 +59,9 @@ $('.image-upload-wrap').bind('dragleave', function() {
   </script>
   <script>
 $('.collapse').collapse()
-
-CKEDITOR.replace('editor1');
+CKEDITOR.replace('editor1', {
+    filebrowserBrowseUrl: '<?php echo _WEB_ROOT ?>/admin-news/storeUpload',
+    filebrowserUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
+});
   </script>
   <!-- End custom js for this page-->

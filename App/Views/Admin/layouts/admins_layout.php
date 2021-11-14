@@ -29,7 +29,8 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="<?php echo _WEB_ROOT; ?>/public/Assets/Admin/css/demo_1/style.css">
     <link rel="stylesheet" href="<?php echo _WEB_ROOT; ?>/public/Assets/Admin/css/upload.css">
-    <script src="//cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+    <script src="<?php echo _WEB_ROOT; ?>/libs/ckeditor/ckeditor.js"></script>
+    <script src="<?php echo _WEB_ROOT; ?>/libs/ckfinder/ckfinder.js"></script>
     <!-- End Layout styles -->
     <link rel="shortcut icon" href="<?php echo _WEB_ROOT; ?>/public/Assets/Admin/images/favicon.ico" />
 
