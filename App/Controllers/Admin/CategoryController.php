@@ -28,7 +28,7 @@ class CategoryController extends Controller {
 
     public function addCategory(){
         if(isset($_POST['submit'])){
-            $dataInsert=[
+            $dataInsert = [
                 'category_name' =>$_POST['category_name'],
                 'parent_id' => $_POST['parent_category']
             ];
@@ -51,8 +51,8 @@ class CategoryController extends Controller {
     }
     
     public function updateCate($id){
-        if(isset($_POST['submit'])){
-            $dataUpdate=[
+        if(isset($_POST['submit'])) {
+            $dataUpdate = [
                 'category_name' =>$_POST['category_name'],
                 'parent_id' => $_POST['parent_category']
             ];

@@ -20,8 +20,13 @@ class NewsController extends Controller {
         $listcategories= $this->categories->getListCategory();
         $this->data['sub_content']['listcategories']= $listcategories;
 
+
         $this->data['content']= 'admin/block/news/addform';
         $this->view('admin/layouts/admins_layout',$this->data);
+    }
+    
+    public function storeUpload(){
+        $this->view('admin/ckfinder');
     }
 
     public function details($id){
@@ -37,7 +42,7 @@ class NewsController extends Controller {
 	        $image = $_FILES["HinhAnh"]["name"];
             $filename='';
             $msg='';
-            if(!empty($image)){
+            if(!empty($image)) {
                 $target = "public/Assets/images/".basename($image);
                 if(move_uploaded_file($_FILES['HinhAnh']['tmp_name'], $target)){
                     $filename=basename($image);
@@ -46,7 +51,7 @@ class NewsController extends Controller {
                     App::$app->loadError('uploadfile',['message'=>$msg]);
   	            }
             }
-            $dataInsert=[
+            $dataInsert = [
                 'title' =>$_POST['title'],
                 'content' => $_POST['content'],
                 'cate_id' => $_POST['cate_id'],
@@ -72,12 +77,12 @@ class NewsController extends Controller {
     }
 
     public function updateDataNews($id){
-        if(isset($_POST['submit'])){
+        if(isset($_POST['submit'])) {
 	        $image = $_FILES["HinhAnh"]["name"];
             if(empty($image)){
                 $detailImage= $this->news->getDetailImage($id);
                 foreach($detailImage as $key=> $value){
-                    $dataUpdate=[
+                    $dataUpdate = [
                         'title' =>$_POST['title'],
                         'content' => $_POST['content'],
                         'cate_id' => $_POST['cate_id'],
@@ -92,7 +97,7 @@ class NewsController extends Controller {
                 $msg='';
                 $target = "public/Assets/images/".basename($image);
                 if (move_uploaded_file($_FILES['HinhAnh']['tmp_name'], $target)) {
-                    $dataUpdate=[
+                    $dataUpdate = [
                         'title' =>$_POST['title'],
                         'content' => $_POST['content'],
                         'cate_id' => $_POST['cate_id'],
