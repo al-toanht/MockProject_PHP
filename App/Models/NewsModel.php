@@ -16,6 +16,7 @@ class NewsModel extends Model{
         $data= $this->db->table('news')->join('categories','news.cate_id=categories.id')->select('news.id,title,content,news.createdate,description,image,categories.category_name')->orderBy('createdate','DESC')->get();
         return $data;
     }
+    
     public function getListLastNews($limit){
         $data= $this->db->table('news')->join('categories','news.cate_id=categories.id')->select('news.id,title,content,news.createdate,description,image,categories.category_name')->limit($limit)->orderBy('createdate','DESC')->get();
         return $data;
@@ -30,13 +31,49 @@ class NewsModel extends Model{
         $data= $this->db->table('news')->join('categories','news.cate_id=categories.id')->whereIn('cate_id','IN',$categoryid)->select('news.id,title,content,news.createdate,description,image,categories.category_name')->orderBy('createdate','DESC')->limit($limit)->get();
         return $data; 
     }
+    
     public function getNewsByCategoryID($categoryid,$limit){
         $data= $this->db->table('news')->join('categories','news.cate_id=categories.id')->where('cate_id','=',$categoryid)->select('news.id,title,content,news.createdate,description,image,categories.category_name')->orderBy('createdate','DESC')->limit($limit)->get();
         return $data;
     }
+
     public function createNews($data){
         $this->db->table('news')->insert($data);
         return $this;
+    }
+
+    public function getNewsByParentCategoryName($categoryname,$limit){
+        $arrChildCategory=[];
+        
+        //get ChildCategory ID By name of parent category
+        $ChildCategory= $this->db->table('categories c, categories p')->whereJoin('p.id','=','c.parent_id')->where('p.category_name','=',$categoryname)->select('c.id')->get();
+        foreach($ChildCategory as $key=>$value){
+            array_push($arrChildCategory,$value['id']);
+        }
+        //Xử lí array chứa id ChildCategory thành string 
+        $strChildCategory= implode(",",$arrChildCategory);
+        $strChildCategory= rtrim($strChildCategory,"/");
+
+        //Lấy ra tin tức mới nhất nằm trong tất cả các Child ID category  
+        $newsChildCategory = $this->db->table('news')->join('categories','news.cate_id=categories.id')->whereIn('cate_id','IN',$strChildCategory)->select('news.id,title,content,news.createdate,description,image,categories.category_name')->orderBy('createdate','DESC')->limit($limit)->get();
+        return $newsChildCategory;
+    }
+    
+    public function getNewsByParentCategoryID($categoryid,$limit){
+        $arrChildCategory=[];
+        array_push($arrChildCategory,$categoryid);
+        //get ChildCategory ID By ID of parent category
+        $ChildCategory= $this->db->table('categories c, categories p')->whereJoin('p.id','=','c.parent_id')->where('p.id','=',$categoryid)->select('c.id')->get();
+        foreach($ChildCategory as $key=>$value){
+            array_push($arrChildCategory,$value['id']);
+        }
+        //Xử lí array chứa id ChildCategory thành string 
+        $strChildCategory= implode(",",$arrChildCategory);
+        $strChildCategory= rtrim($strChildCategory,"/");
+
+        //Lấy ra tin tức mới nhất nằm trong tất cả các Child ID category  
+        $newsChildCategory = $this->db->table('news')->join('categories','news.cate_id=categories.id')->whereIn('cate_id','IN',$strChildCategory)->select('news.id,title,content,news.createdate,description,image,categories.category_name')->orderBy('createdate','DESC')->limit($limit)->get();
+        return $newsChildCategory;
     }
 
     public function deleteNews($id){

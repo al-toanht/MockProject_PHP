@@ -39,10 +39,12 @@ class CategoryModel extends Model {
         $data= $this->db->table('categories c, categories p')->whereJoin('p.id','=','c.parent_id')->where('p.category_name','=',$categoryname)->select('c.id')->get();
         return $data;
     }
+
     public function getChildIDCateByParentID($categoryid){
         $data= $this->db->table('categories c, categories p')->whereJoin('p.id','=','c.parent_id')->where('p.id','=',$categoryid)->select('c.id')->get();
         return $data;
     }
+    
     public function getJoin(){
         $data = $this->db->table('news')->join('categories','news.cate_id=categories.id')->get();
         return $data;
