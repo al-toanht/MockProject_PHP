@@ -12,7 +12,7 @@
                         <div class="about__date-time___title ">
                             <img alt="" src="<?php echo _WEB_ROOT; ?>/public/Assets/User/icon/timetable.png "><span
                                 class="about__date-time "><?php echo $value['createdate'] ?></span>
-                            <a href="<?php echo _WEB_ROOT ?>/trang-chu/detailNews/<?php echo $value['id']?>">
+                            <a href="<?php echo _WEB_ROOT ?>/chi-tiet/<?php echo $value['id']?>">
                                 <p class="about__title "><?php echo $value['title'] ?></p>
                             </a>
                         </div>
@@ -32,7 +32,7 @@
                                     <img alt=""
                                         src="<?php echo _WEB_ROOT; ?>/public/Assets/User/icon/timetable.png "><span
                                         class="about__date-time "><?php echo $value['createdate'] ?></span>
-                                    <a href="<?php echo _WEB_ROOT ?>/trang-chu/detailNews/<?php echo $value['id']?>">
+                                    <a href="<?php echo _WEB_ROOT ?>/chi-tiet/<?php echo $value['id']?>">
                                         <p class="about__title "><?php echo $value['title'] ?></p>
                                     </a>
                                 </div>
@@ -52,7 +52,7 @@
                                     <img alt=""
                                         src="<?php echo _WEB_ROOT; ?>/public/Assets/User/icon/timetable.png "><span
                                         class="about__date-time "><?php echo $value['createdate'] ?></span>
-                                    <a href="<?php echo _WEB_ROOT ?>/trang-chu/detailNews/<?php echo $value['id']?>">
+                                    <a href="<?php echo _WEB_ROOT ?>/chi-tiet/<?php echo $value['id']?>">
                                         <p class="about__title "><?php echo $value['title'] ?></p>
                                     </a>
                                 </div>
@@ -89,7 +89,7 @@
                         <div class="col-xl-6">
                             <div class="about__news">
                                 <div class="about__category-img">
-                                    <a href="<?php echo _WEB_ROOT ?>/trang-chu/detailNews/<?php echo $value['id']?>">
+                                    <a href="<?php echo _WEB_ROOT ?>/chi-tiet/<?php echo $value['id']?>">
                                         <img alt=""
                                             src="<?php echo _WEB_ROOT ?>/public/Assets/images/<?php echo $value['image']?>">
                                     </a>
@@ -103,7 +103,7 @@
                                     <span class="comment"><i class="far fa-comment-alt"></i>13</span>
                                     <div class="about__title">
                                         <a
-                                            href="<?php echo _WEB_ROOT ?>/trang-chu/detailNews/<?php echo $value['id']?>"><?php  echo $value['title']?></a>
+                                            href="<?php echo _WEB_ROOT ?>/chi-tiet/<?php echo $value['id']?>"><?php  echo $value['title']?></a>
                                     </div>
                                     <p class="description"><?php  echo $value['content']?></p>
                                 </div>
@@ -242,7 +242,7 @@
                             <span class="comment"><i class="far fa-comment-alt"></i>13</span>
                             <div class="about__title">
                                 <a
-                                    href="<?php echo _WEB_ROOT?>/trang-chu/detailNews/<?php echo $value['id']?>"><?php echo $value['title'] ?></a>
+                                    href="<?php echo _WEB_ROOT?>/chi-tiet/<?php echo $value['id']?>"><?php echo $value['title'] ?></a>
                             </div>
                         </div>
                         <?php }?>
@@ -314,7 +314,7 @@
                 <div class="col-xl-4">
                     <div class="about__news">
                         <div class="about__category-img">
-                            <a href="<?php echo _WEB_ROOT?>/trang-chu/detailNews/<?php echo $value['id']?>">
+                            <a href="<?php echo _WEB_ROOT?>/chi-tiet/<?php echo $value['id']?>">
                                 <img alt=""
                                     src="<?php echo _WEB_ROOT ?>/public/Assets/images/<?php echo $value['image']; ?>">
                             </a>
@@ -333,7 +333,7 @@
                                     class="far fa-calendar-alt"></i><?php echo $value['createdate']; ?></span>
                             <span class="comment"><i class="far fa-comment-alt"></i>13</span>
                             <div class="about__title ">
-                                <a href="<?php echo _WEB_ROOT?>/trang-chu/detailNews/<?php echo $value['id']?>">
+                                <a href="<?php echo _WEB_ROOT?>/chi-tiet/<?php echo $value['id']?>">
                                     <?php echo $value['title']; ?>
                                 </a>
                             </div>
@@ -377,7 +377,7 @@
                             <span class="comment"><i class="far fa-comment-alt"></i>13</span>
                             <div class="about__title">
                                 <a
-                                    href="<?php echo _WEB_ROOT?>/trang-chu/detailNews/<?php echo $value['id']?>"><?php echo $value['title'] ?></a>
+                                    href="<?php echo _WEB_ROOT?>/chi-tiet/<?php echo $value['id']?>"><?php echo $value['title'] ?></a>
                             </div>
                             <p class="description"><?php echo$value['content'] ?></p>
                             <span class="author"><i class="fas fa-user"></i>Sara Ware</span>
@@ -391,7 +391,7 @@
                         <?php foreach($listCategoriesParent as $key => $value){ ?>
                         <div class="dropdown-select">
                             <p class="select"><a
-                                    href="<?php echo _WEB_ROOT?>/trang-chu/showNewsParentCategory/<?php echo $value['id']?>"><?php echo $value['category_name'] ?></a>
+                                    href="<?php echo _WEB_ROOT?>/danh-muc-cha/<?php echo $value['id']?>"><?php echo $value['category_name'] ?></a>
                             </p>
                             <i class=" fa fa-angle-down"></i>
                         </div>
@@ -416,14 +416,14 @@
                                     <img alt=""
                                         src="<?php echo _WEB_ROOT; ?>/public/Assets/User/icon/timetable.png "><span
                                         class="about__date-time "><?php echo $value['createdate']; ?></span>
-                                    <a href="<?php echo _WEB_ROOT?>/trang-chu/detailNews/<?php echo $value['id']?>">
+                                    <a href="<?php echo _WEB_ROOT?>/chi-tiet/<?php echo $value['id']?>">
                                         <p class="about__title "><?php echo $value['title']; ?></p>
                                     </a>
                                 </div>
                             </div>
                             <?php }else{ ?>
                             <div class="title-new">
-                                <a href="<?php echo _WEB_ROOT?>/trang-chu/detailNews/<?php echo $value['id']?>">
+                                <a href="<?php echo _WEB_ROOT?>/chi-tiet/<?php echo $value['id']?>">
                                     <p class="about__title "><?php echo $value['title']; ?></p>
                                     </p>
                                 </a>
@@ -446,14 +446,14 @@
                                     <img alt=""
                                         src="<?php echo _WEB_ROOT; ?>/public/Assets/User/icon/timetable.png "><span
                                         class="about__date-time "><?php echo $value['createdate']; ?></span>
-                                    <a href="<?php echo _WEB_ROOT?>/trang-chu/detailNews/<?php echo $value['id']?>">
+                                    <a href="<?php echo _WEB_ROOT?>/chi-tiet/<?php echo $value['id']?>">
                                         <p class="about__title "><?php echo $value['title']; ?></p>
                                     </a>
                                 </div>
                             </div>
                             <?php }else{ ?>
                             <div class="title-new">
-                                <a href="<?php echo _WEB_ROOT?>/trang-chu/detailNews/<?php echo $value['id']?>">
+                                <a href="<?php echo _WEB_ROOT?>/chi-tiet/<?php echo $value['id']?>">
                                     <p class="about__title "><?php echo $value['title']; ?></p>
                                     </p>
                                 </a>
@@ -470,21 +470,21 @@
                                         $num++;
                                         if($num==1){?>
                                     <div class="carousel-item active">
-                                        <a href="<?php echo _WEB_ROOT?>/trang-chu/detailNews/<?php echo $value['id']?>">
+                                        <a href="<?php echo _WEB_ROOT?>/chi-tiet/<?php echo $value['id']?>">
                                             <img class="d-block w-100" style="max-height: 500px;"
                                                 src="<?php echo _WEB_ROOT; ?>/public/Assets/images/<?php echo $value['image']; ?>"
                                                 alt="Leopard">
                                         </a>
                                         <div class="carousel-caption d-none d-md-block">
                                             <a class="link-carousel"
-                                                href="<?php echo _WEB_ROOT?>/trang-chu/detailNews/<?php echo $value['id']?>">
+                                                href="<?php echo _WEB_ROOT?>/chi-tiet/<?php echo $value['id']?>">
                                                 <h5><?php echo $value['title']; ?></h5>
                                             </a>
                                         </div>
                                     </div>
                                     <?php }else {?>
                                     <div class="carousel-item">
-                                        <a href="<?php echo _WEB_ROOT?>/trang-chu/detailNews/<?php echo $value['id']?>">
+                                        <a href="<?php echo _WEB_ROOT?>/chi-tiet/<?php echo $value['id']?>">
                                             <img class="d-block w-100" style="max-height: 500px;"
                                                 src="<?php echo _WEB_ROOT; ?>/public/Assets/images/<?php echo $value['image']; ?>"
                                                 alt="Leopard">
@@ -492,7 +492,7 @@
 
                                         <div class="carousel-caption d-none d-md-block">
                                             <a class="link-carousel"
-                                                href="<?php echo _WEB_ROOT?>/trang-chu/detailNews/<?php echo $value['id']?>">
+                                                href="<?php echo _WEB_ROOT?>/chi-tiet/<?php echo $value['id']?>">
                                                 <h5><?php echo $value['title']; ?></h5>
                                             </a>
                                         </div>

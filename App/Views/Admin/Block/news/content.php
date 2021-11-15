@@ -4,7 +4,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Table News</h4>
-                        <a href="<?php echo _WEB_ROOT ?>/admin-news/storeAdd" class="btn btn-primary"
+                        <a href="<?php echo _WEB_ROOT ?>/admin-news/addNews" class="btn btn-primary"
                             style="float: right;">Add
                             news</a>
                         <table class="table" style="table-layout:fixed">
@@ -31,7 +31,7 @@
                                     </td>
                                     <td>
                                         <a
-                                            href="<?php echo _WEB_ROOT ?>/admin-news/storeUpdate/<?php echo $value['id']?>">
+                                            href="<?php echo _WEB_ROOT ?>/admin-news/updateDataNews/<?php echo $value['id']?>">
                                             <i class="fa fa-edit"></i>
                                         </a>
                                     </td>

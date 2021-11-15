@@ -9,7 +9,7 @@ class Connection{
                 PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
             ];
-            $con = new PDO($dsn,$config['user'],'',$option);
+            $con = new PDO($dsn,$config['user'], $config['password'], $option);
             self::$conn = $con;
         }catch (Exception $exception){
             $mess = $exception->getMessage();
@@ -19,8 +19,8 @@ class Connection{
     }
     
     public static function getInstance($config){
-        if(self::$instance==null) {
-            $connection =new Connection($config);
+        if(self::$instance == null) {
+            $connection = new Connection($config);
             self::$instance = self::$conn;
         }
         return self::$instance;

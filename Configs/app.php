@@ -6,8 +6,8 @@ $config['app'] = [
         'admin-changepassword' => AuthMiddleware::class,
         'login' => LoginMiddleware::class,
     ],
-    'boot' =>[
-
+    'boot' => [
+        AppServiceProvider::class,
     ],
 ];
 ?>

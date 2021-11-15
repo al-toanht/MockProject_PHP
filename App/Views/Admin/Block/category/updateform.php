@@ -14,6 +14,8 @@
                                             <input type="text" class="form-control" id="category_name"
                                                 name="category_name" placeholder="Enter category name"
                                                 value="<?php echo $value['category_name']?>" required>
+                                            <span
+                                                style="color: red;"><?php echo (!empty($message)) ? $message:false; ?></span>
                                             </br>
                                             </br>
                                             <label for="exampleInputEmail1">Parent Category </label>

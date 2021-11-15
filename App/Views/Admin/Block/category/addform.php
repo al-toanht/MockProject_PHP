@@ -11,7 +11,10 @@
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Category Name</label>
                                             <input type="text" class="form-control" id="category_name"
-                                                name="category_name" placeholder="Enter category name" required>
+                                                name="category_name" placeholder="Enter category name"
+                                                value="<?php echo $dataInsert['category_name']; ?>" required>
+                                            <span
+                                                style="color: red;"><?php echo (!empty($message)) ? $message:false; ?></span>
                                             </br>
                                             </br>
                                             <label for="exampleInputEmail1">Parent Category </label>
@@ -20,7 +23,8 @@
                                                 name='parent_category'>
                                                 <option value='0'>default</option>
                                                 <?php foreach ($categoriesParent as $key => $value){?>
-                                                <option value='<?php echo $value['id'] ?>'>
+                                                <option value='<?php echo $value['id'] ?>'
+                                                    <?php if($value['id'] == $dataInsert['parent_id']) echo 'selected' ?>>
                                                     <?php echo $value['category_name'] ?></option>
                                                 <?php }?>
                                             </select>

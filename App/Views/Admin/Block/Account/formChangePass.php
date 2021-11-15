@@ -34,9 +34,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <button class="btn btn-primary submit-btn btn-block">Login</button>
-                                    </div>
+                                    <button class="btn btn-primary submit-btn btn-block">Login</button>
                                 </form>
                             </div>
                         </div>

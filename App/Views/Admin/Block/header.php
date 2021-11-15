@@ -1,9 +1,9 @@
     <!-- partial:../../partials/_navbar.html -->
     <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
-            <a class="navbar-brand brand-logo" href="../../index.html">
+            <a class="navbar-brand brand-logo" href="">
                 <img src="<?php echo _WEB_ROOT; ?>/public/Assets/images/logo.svg" alt="logo" /> </a>
-            <a class="navbar-brand brand-logo-mini" href="../../index.html">
+            <a class="navbar-brand brand-logo-mini" href="">
                 <img src="<?php echo _WEB_ROOT; ?>/public/Assets/images/logo-mini.svg" alt="logo" /> </a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-center">

@@ -9,63 +9,100 @@ class CategoryController extends Controller {
     }
 
     public function index(){
-        $listcategories= $this->categories->getListCategoryASC();
-        $this->data['sub_content']['listcategories']= $listcategories;
+        $listcategories = $this->categories->getListCategoryASC();
+        $this->data['content']['listcategories'] = $listcategories;
 
-        $this->data['content']= 'admin/block/category/content';
+        $this->data['link'] = 'admin/block/category/content';
     
         $this->view('admin/layouts/admins_layout',$this->data);
     }
 
-    public function storeAdd(){
-        $categoriesParent= $this->categories->getCategoryParent();
-        $this->data['sub_content']['categoriesParent']= $categoriesParent;
-
-        $this->data['content']= 'admin/block/category/addform';
-
-        $this->view('admin/layouts/admins_layout',$this->data);
-    }
-
+   
     public function addCategory(){
-        if(isset($_POST['submit'])){
+        $categoriesParent = $this->categories->getCategoryParent();
+        $this->data['content']['categoriesParent'] = $categoriesParent;
+        
+        $this->data['link'] = 'admin/block/category/addform';
+
+        $dataInsert = [
+            'category_name' => '',
+            'parent_id' => ''
+        ];
+        
+        if (isset($_POST['submit'])) {
+            $message= "";
             $dataInsert = [
-                'category_name' =>$_POST['category_name'],
+                'category_name' => $_POST['category_name'],
                 'parent_id' => $_POST['parent_category']
             ];
-            $this->categories->createCategory($dataInsert);
+            if ($this->categories->findCategoryByName($_POST['category_name'])) {
+                $message = "Category Name Đã Tồn Tại";
+                
+                $this->data['content']['message']=$message;
+            } else {
+                $this->categories->createCategory($dataInsert);
 
-            header("location: $this->_WEB_ROOT/admin-category");  
+                header("location: $this->_WEB_ROOT/admin-category");  
+            }
         }
-    }
-
-    public function storeUpdate($id){
-        $listcategories= $this->categories->getListnotCategory($id);
-        $this->data['sub_content']['listcategories']= $listcategories;
-
-        $detailCategory= $this->categories->getDetailCategory($id);
-        $this->data['sub_content']['detailCategory']= $detailCategory;
-
-        $this->data['content']= 'admin/block/category/updateform';
-
+        $this->data['content']['dataInsert'] = $dataInsert;
+        
         $this->view('admin/layouts/admins_layout',$this->data);
+
     }
     
     public function updateCate($id){
-        if(isset($_POST['submit'])) {
+        $listcategories = $this->categories->getListnotCategory($id);
+        $this->data['content']['listcategories'] = $listcategories;
+
+        $detailCategory= $this->categories->getDetailCategory($id);
+        $this->data['content']['detailCategory'] = $detailCategory;
+
+        $this->data['link'] = "admin/block/category/updateform";
+        if (isset($_POST['submit'])) {
+            $message = "";
             $dataUpdate = [
                 'category_name' =>$_POST['category_name'],
                 'parent_id' => $_POST['parent_category']
             ];
-            $this->categories->updateCategory($dataUpdate,$id);
+            if ($this->categories->findCategoryByNameToUpdate(($_POST['category_name']),$id)) {
+                $message = "Category Name Đã Tồn Tại";
+                
+                $this->data['content']['message']=$message;
+            } else {
+                $dataUpdate = [
+                    'category_name' =>$_POST['category_name'],
+                    'parent_id' => $_POST['parent_category']
+                ];
+                $this->categories->updateCategory($dataUpdate,$id);
 
-            header("location: $this->_WEB_ROOT/admin-category");
+                header("location: $this->_WEB_ROOT/admin-category");
+            }
         }
+        $this->view('admin/layouts/admins_layout',$this->data);
     }
     
     public function deleteCate($id){
-        if(isset($_POST['submit'])) {
-            $this->categories->deleteCategory($id);
-            $this->news->deleteNewsByCategory($id);
+        if (isset($_POST['submit'])) {
+            $ChildCategory = $this->categories->getChildIDCateByParentID($id);
+            
+            if ($ChildCategory) {
+                $arrChildCategory = [];
+                array_push($arrChildCategory,$id);
+                foreach($ChildCategory as $key=>$value){
+                    array_push($arrChildCategory,$value['id']);
+                }
+                $strChildCategory = implode(",",$arrChildCategory);
+                $strChildCategory = rtrim($strChildCategory,"/");
+
+                $this->news->deleteAllNewsInChildCategory($strChildCategory);
+                
+                $this->categories->deleteAllChildCategory($strChildCategory);
+            } else {
+                $this->categories->deleteCategory($id);
+            
+                $this->news->deleteNewsByCategory($id);
+            }
             
             header("location: $this->_WEB_ROOT/admin-category");
         }

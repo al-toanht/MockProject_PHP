@@ -35,9 +35,11 @@ class App {
     public function handleUrl(){
         $url = $this->getUrl();
         $url= $this->__routes->handleRoute($url);
-
+        //Middleware app
         $this->handleRouteMiddleware($this->__routes->getUri());
         
+        //ServiceProvider app
+        $this->handleAppServiceProvider($this->__db);
         $urlArr=array_filter(explode('/',$url));
         $urlArr=array_values($urlArr);
         $urlCheck='';
@@ -114,6 +116,26 @@ class App {
                     if(class_exists($middlewareItem)) {
                         $middleWareObject= new $middlewareItem();
                         $middleWareObject->handle();
+                    }
+                }
+            }
+        }
+    }
+
+    public function handleAppServiceProvider($db){
+        global $config; 
+
+        if(!empty($config['app']['boot'])) {
+            $serviceProviderArr = $config['app']['boot'];
+            foreach($serviceProviderArr as $serviceName){
+                if(file_exists('app/core/'.$serviceName.'.php')) {
+                    require_once 'app/core/'.$serviceName.'.php';
+                    if(class_exists($serviceName)) {
+                        $serviceObject= new $serviceName();
+                        if(!empty($db)){
+                            $serviceObject->db = $db;
+                        }
+                        $serviceObject->boot();
                     }
                 }
             }

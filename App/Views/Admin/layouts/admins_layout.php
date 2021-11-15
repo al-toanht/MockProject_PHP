@@ -47,7 +47,7 @@
             ?>
             <div class="main-panel">
                 <?php
-                    $this->view($content,$sub_content); 
+                    $this->view($link,$content); 
                 ?>
                 <?php
                     $this->view('Admin/Block/footer'); 

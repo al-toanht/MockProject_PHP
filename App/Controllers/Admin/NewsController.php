@@ -10,18 +10,9 @@ class NewsController extends Controller {
 
     public function index(){
         $getListNews= $this->news->getListNews();
-        $this->data['sub_content']['getListNews']= $getListNews;
+        $this->data['content']['getListNews'] = $getListNews;
         
-        $this->data['content']= 'admin/block/news/content';
-        $this->view('admin/layouts/admins_layout',$this->data);
-    }
-
-    public function storeAdd(){        
-        $listcategories= $this->categories->getListCategory();
-        $this->data['sub_content']['listcategories']= $listcategories;
-
-
-        $this->data['content']= 'admin/block/news/addform';
+        $this->data['link'] = 'admin/block/news/content';
         $this->view('admin/layouts/admins_layout',$this->data);
     }
     
@@ -31,95 +22,115 @@ class NewsController extends Controller {
 
     public function details($id){
         $detailNews= $this->news->getDetailNews($id);
-        $this->data['sub_content']['detailNews']=$detailNews;
+        $this->data['content']['detailNews'] = $detailNews;
         
-        $this->data['content']= 'admin/block/news/detailform';
+        $this->data['link'] = 'admin/block/news/detailform';
         $this->view('admin/layouts/admins_layout',$this->data);
     }
     
     public function addNews(){
-        if(isset($_POST['submit'])){
+        $dataInsert = [
+            'title' => '',
+            'content' => '',
+            'cate_id' => '',
+            'description' => '',
+            'image' => '',
+        ];
+        $this->data['link'] = 'admin/block/news/addform';    
+
+        if (isset($_POST['submit'])) {
+            $message = "";
+            $nameImage = "";
 	        $image = $_FILES["HinhAnh"]["name"];
-            $filename='';
-            $msg='';
-            if(!empty($image)) {
-                $target = "public/Assets/images/".basename($image);
-                if(move_uploaded_file($_FILES['HinhAnh']['tmp_name'], $target)){
-                    $filename=basename($image);
-                }else {
-                    $msg= "Upload file khong thanh cong";
-                    App::$app->loadError('uploadfile',['message'=>$msg]);
-  	            }
-            }
             $dataInsert = [
-                'title' =>$_POST['title'],
+                'title' => trim($_POST['title']),
                 'content' => $_POST['content'],
                 'cate_id' => $_POST['cate_id'],
                 'description' => $_POST['description'],
-                'image' => $filename,
+                'image' => '',
             ];
-            $this->news->createNews($dataInsert);
-
-            header("location: $this->_WEB_ROOT/admin-news");  
+            if ($this->news->findNewsByTitle(trim($_POST['title']))) {
+                $message = "Title Đã Tồn Tại";
+               
+                $this->data['content']['message'] = $message;
+            } else {
+                if (!empty($image)) {
+                    $nameImage = uploadImage($image);
+                    if ($nameImage==false) {
+                        $message = "Upload File Không Thành Công";
+                        App::$app->loadError('uploadfile',['message'=>$message]);
+                    } else {
+                        $dataInsert['image'] = $nameImage;
+                        $insert = $this->news->createNews($dataInsert);
+                
+                        if ($insert) {
+                            header("location: $this->_WEB_ROOT/admin-news");  
+                        }
+                    }
+                } else {
+                    $insert = $this->news->createNews($dataInsert);
+                    if ($insert) {
+                        header("location: $this->_WEB_ROOT/admin-news");  
+                    }
+                }
+            }
   	    }
-    }
-    
-    public function storeUpdate($id){
-        $listcategories= $this->categories->getListCategory();
-        $this->data['sub_content']['listcategories']= $listcategories;
-
-        $detailNews= $this->news->getDetailNews($id);
-        $this->data['sub_content']['detailNews']= $detailNews;
-
-        $this->data['content']= 'admin/block/news/updateform';
-
+        $this->data['content']['dataInsert'] = $dataInsert;
         $this->view('admin/layouts/admins_layout',$this->data);
     }
-
-    public function updateDataNews($id){
-        if(isset($_POST['submit'])) {
-	        $image = $_FILES["HinhAnh"]["name"];
-            if(empty($image)){
-                $detailImage= $this->news->getDetailImage($id);
-                foreach($detailImage as $key=> $value){
-                    $dataUpdate = [
-                        'title' =>$_POST['title'],
-                        'content' => $_POST['content'],
-                        'cate_id' => $_POST['cate_id'],
-                        'description' => $_POST['description'],
-                        'image' => $value['image'],
-                    ];
-                }
-                $this->news->updateNews($dataUpdate,$id);
-
-                header("location: $this->_WEB_ROOT/admin-news");  
-            }else {
-                $msg='';
-                $target = "public/Assets/images/".basename($image);
-                if (move_uploaded_file($_FILES['HinhAnh']['tmp_name'], $target)) {
-                    $dataUpdate = [
-                        'title' =>$_POST['title'],
-                        'content' => $_POST['content'],
-                        'cate_id' => $_POST['cate_id'],
-                        'description' => $_POST['description'],
-                        'image' => basename($image)
-                    ];
-                    $this->news->updateNews($dataUpdate,$id);
     
+    public function updateDataNews($id){
+        $detailNews = $this->news->getDetailNews($id);
+        $this->data['content']['detailNews'] = $detailNews;
+
+        $this->data['link'] = 'admin/block/news/updateform';
+        if (isset($_POST['submit'])) {
+            $message= "";
+            $dataUpdate = [
+                'title' => trim($_POST['title']),
+                'content' => $_POST['content'],
+                'cate_id' => $_POST['cate_id'],
+                'description' => $_POST['description'],
+                'image' => '',
+            ];
+	        $image = $_FILES["HinhAnh"]["name"];
+            if ($this->news->findNewsByTitleToUpdate(trim($_POST['title']),$id)) {
+                $message = "Title  Đã Tồn Tại";
+
+                $this->data['content']['message'] = $message;
+            } else {
+                if (empty($image)) {
+                    $detailImage = $this->news->getDetailImage($id);
+                    foreach($detailImage as $key=> $value){
+                        $dataUpdate['image'] = $value['image'];
+                    }
+                    $this->news->updateNews($dataUpdate,$id);
+
                     header("location: $this->_WEB_ROOT/admin-news");  
-                  }else{
-                    $msg= "Upload file khong thanh cong";
-                    App::$app->loadError('uploadfile',['message'=>$msg]);
+                } else {
+                    $nameImage = uploadImage($image);
+                    if ($nameImage==false) {
+                        $message = "Upload File Không Thành Công";
+                        App::$app->loadError('uploadfile',['message'=>$message]);
+                    } else {
+                        $dataUpdate['image'] = $nameImage;
+                        $update = $this->news->updateNews($dataUpdate,$id);
+                
+                        if ($update) {
+                            header("location: $this->_WEB_ROOT/admin-news");  
+                        }
+                    }
                 }
             }
         }
+        $this->view('admin/layouts/admins_layout',$this->data);
     }
     
     public function deleteDataNews($id){
-        if(isset($_POST['submit'])) {
+        if (isset($_POST['submit'])) {
             $this->news->deleteNews($id);
             
-            header("location: $this->_WEB_ROOT/admin-news");  
+            header("location: $this->_WEB_ROOT/admin-news");
         }
     }
 } 

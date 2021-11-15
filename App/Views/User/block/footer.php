@@ -42,7 +42,7 @@
                         <li>
                             <a href="">categories:</a>
                         </li>
-                        <?php showCategoriesFooter($ListCategory) ?>
+                        <?php !empty($listCategories) ?showCategoriesFooter($listCategories) :false; ?>
                     </ul>
                 </div>
             </div>

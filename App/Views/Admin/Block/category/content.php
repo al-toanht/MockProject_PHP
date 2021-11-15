@@ -4,7 +4,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Table Category</h4>
-                        <a href="<?php echo _WEB_ROOT ?>/admin-category/storeAdd" class="btn btn-primary"
+                        <a href="<?php echo _WEB_ROOT ?>/admin-category/addCategory" class="btn btn-primary"
                             style="float: right;">Add
                             category</a>
                         <table class="table">
@@ -29,7 +29,7 @@
                                     <td><?php echo $value['Createdate'];?></td>
                                     <td>
                                         <a
-                                            href="<?php echo _WEB_ROOT ?>/admin-category/storeUpdate/<?php echo $value['id']?>"><i
+                                            href="<?php echo _WEB_ROOT ?>/admin-category/updateCate/<?php echo $value['id']?>"><i
                                                 class="fa fa-edit"></i></a>
                                     </td>
                                     <td>

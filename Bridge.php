@@ -6,9 +6,14 @@ if(!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS']=='on') {
 }else {
     $web_root= 'http://'. $_SERVER['HTTP_HOST'];
 }
+$dirRoot = str_replace("\\", '/', _DIR_ROOT);
 
-$folder = str_replace(strtolower($_SERVER['DOCUMENT_ROOT']),'',strtolower(_DIR_ROOT));
-$web_root= str_replace('\\','/',$web_root);
+$documentRoot = str_replace("\\", '/', $_SERVER['DOCUMENT_ROOT']);
+
+$folder = str_replace(strtolower($documentRoot),'',strtolower($dirRoot));
+
+$web_root = $web_root.$folder;
+
 define('_WEB_ROOT',$web_root);
 
 //Xử lí import các file trong folder configs
@@ -20,6 +25,22 @@ if(!empty($configs_dir)) {
         }
     }
 }
+
+if(!empty($config['app']['service'])){
+    $allServices = $config['app']['service'];
+    if (!empty($allServices)){
+        foreach ($allServices as $serviceName){
+            if (file_exists('app/core/'.$serviceName.'.php')){
+                require_once 'app/core/'. $serviceName. '.php';
+            }
+        }
+    }
+}
+//Load ServiceProvider class
+require_once 'Core/ServiceProvider.php';
+
+// Load View Class
+require_once 'Core/View.php';
 
 //Middleware
 require_once 'Core/Middlewares.php';
@@ -45,6 +66,7 @@ if(!empty($config['database'])) {
         require_once 'Core/DB.php';
     }
 }
+
 require_once "App/App.php"; // load app
 
 require_once 'Core/Model.php'; //load BaseModels

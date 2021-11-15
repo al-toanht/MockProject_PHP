@@ -9,24 +9,29 @@
                             <div class="form-group">
                                 <label for="inputTitle">Category Post</label>
                                 <select class="form-control form-control-lg" id='cate_id' name='cate_id'>
-                                    <?php foreach ($listcategories as $key => $value){?>
-                                    <option value='<?php echo $value['id'] ?>'>
+                                    <?php foreach ($listCategories as $key => $value){?>
+                                    <option value='<?php echo $value['id'] ?>'
+                                        <?php if($value['id'] == $dataInsert['cate_id'])echo 'selected';?>>
                                         <?php echo $value['category_name'] ?></option>
                                     <?php }?>
                                 </select>
                             </div>
+
                             <div class="form-group">
                                 <label for="inputTitle">Title</label>
                                 <input type="text" class="form-control" name="title" id="title" placeholder="Title"
-                                    required>
+                                    value="<?php echo $dataInsert['title'] ?>" required>
+                                <span style="color: red;"><?php echo (!empty($message)) ? $message:false; ?></span>
                             </div>
                             <div class="form-group">
                                 <label for="textContent">Content</label>
-                                <textarea class="form-control" id="content" name="content" rows="2" required></textarea>
+                                <textarea class="form-control" id="content" name="content" rows="2"
+                                    required><?php echo $dataInsert['content'] ?></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="inputDescription">Description</label>
-                                <textarea class="form-control" name="description" id="editor1" required></textarea>
+                                <textarea class="form-control" name="description" id="editor1"
+                                    required><?php echo $dataInsert['content'] ?></textarea>
                             </div>
                             <div class="form-group">
                                 <div class="file-upload">

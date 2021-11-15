@@ -40,7 +40,7 @@
                                         <input type="text" class="form-control" name="username"
                                             value="<?php  echo $data['username']; ?>" placeholder="Username">
                                         <div class="input-group-append">
-                                            <span class="input-group-text">
+                                            <span class="input-group-text text-input">
                                                 <?php  echo $data['usernameError']; ?>
                                                 <i class="mdi mdi-check-circle-outline"></i>
                                             </span>

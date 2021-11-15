@@ -1,7 +1,8 @@
 <?php
 $config['database'] = [
     'host' => 'localhost:3306',
-    'user' => 'root',
+    'user' => "root",
+    'password' => '123456',
     'db'=> 'blog'
 ] 
 ?>

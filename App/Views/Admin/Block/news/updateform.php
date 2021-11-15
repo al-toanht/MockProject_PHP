@@ -10,7 +10,7 @@
                             <div class="form-group">
                                 <label for="inputTitle">Category Post</label>
                                 <select class="form-control form-control-lg" id='cate_id' name='cate_id'>
-                                    <?php foreach ($listcategories as $key => $value1){?>
+                                    <?php foreach ($listCategories as $key => $value1){?>
                                     <option value='<?php echo $value1['id'] ?>'
                                         <?php if($value1['id']==$value['cate_id']) echo "selected" ?>>
                                         <?php echo $value1['category_name'] ?></option>
@@ -21,6 +21,7 @@
                                 <label for="inputTitle">Title</label>
                                 <input type="text" class="form-control" name="title" id="title" placeholder="Title"
                                     value='<?php echo $value['title']; ?>' required>
+                                <span style="color: red;"><?php echo (!empty($message)) ? $message:false; ?></span>
                             </div>
                             <div class=" form-group">
                                 <label for="textContent">Content</label>

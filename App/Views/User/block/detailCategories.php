@@ -10,13 +10,13 @@
                 <?php foreach($listNewsByCategory as $key => $value){?>
                 <article class="article-item  type-text">
                     <p class="article-thumbnail">
-                        <a href="<?php echo _WEB_ROOT?>/trang-chu/detailNews/<?php echo $value['id']?>">
+                        <a href="<?php echo _WEB_ROOT?>/chi-tiet/<?php echo $value['id']?>">
                             <img src="<?php echo _WEB_ROOT; ?>/public/Assets/images/<?php echo $value['image']?>">
                         </a>
                     </p>
                     <header>
                         <p class="article-title">
-                            <a href="<?php echo _WEB_ROOT?>/trang-chu/detailNews/<?php echo $value['id']?>">
+                            <a href="<?php echo _WEB_ROOT?>/chi-tiet/<?php echo $value['id']?>">
                                 <?php echo $value['title'] ?>
                             </a>
                         </p>

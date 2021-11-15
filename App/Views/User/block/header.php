@@ -78,7 +78,7 @@
                     </div>
                     <div class="col">
                         <ul class="top_nav__menu">
-                            <?php showCategoriesHeader($ListCategory); ?>
+                            <?php !empty($listCategories) ? showCategoriesHeader($listCategories) :false; ?>
                         </ul>
                     </div>
                     <div class="col-xl-3 ">

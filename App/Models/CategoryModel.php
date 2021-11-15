@@ -14,7 +14,17 @@ class CategoryModel extends Model {
         $data= $this->db->table('categories')->select()->get();
         return $data;
     }
+
+    public function findCategoryByName($categoryname){
+        $data = $this->db->table('categories')->select()->where('category_name','=',$categoryname)->get();
+        return $data;
+    }
     
+    public function findCategoryByNameToUpdate($categoryname,$id){
+        $data = $this->db->table('categories')->select()->where('category_name','=',$categoryname)->where('id','!=',$id)->get();
+        return $data;
+    }
+
     public function getListCategoryASC(){
         $data= $this->db->table('categories')->select()->orderBy('parent_id','ASC')->get();
         return $data;
@@ -40,6 +50,11 @@ class CategoryModel extends Model {
         return $data;
     }
 
+    public function deleteAllChildCategory($id){
+        $this->db->table('categories')->whereIn('id','IN',$id)->delete();
+        return $this;
+    }
+    
     public function getChildIDCateByParentID($categoryid){
         $data= $this->db->table('categories c, categories p')->whereJoin('p.id','=','c.parent_id')->where('p.id','=',$categoryid)->select('c.id')->get();
         return $data;
